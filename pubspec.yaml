@@ -109,6 +109,9 @@ flutter:
     - family: 'akira'
       fonts:
         - asset: assets/fonts/Akira_Expanded_Demo.otf
+    - family: 'Medicinal'
+      fonts:
+        - asset: assets/fonts/Medicinal_Compound.otf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

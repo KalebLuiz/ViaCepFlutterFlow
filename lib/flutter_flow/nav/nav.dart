@@ -33,12 +33,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => EnderecoWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/HD-wallpaper-corinthians-sccp.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+          : CriarcontaWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => EnderecoWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/HD-wallpaper-corinthians-sccp.jpg',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
+              : CriarcontaWidget(),
         ),
         FFRoute(
           name: ApresentacaoeloginWidget.routeName,
@@ -54,6 +74,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: EnderecoWidget.routeName,
           path: EnderecoWidget.routePath,
           builder: (context, params) => EnderecoWidget(),
+        ),
+        FFRoute(
+          name: SplashWidget.routeName,
+          path: SplashWidget.routePath,
+          builder: (context, params) => SplashWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
